@@ -1,5 +1,6 @@
 import os
 from flask import Flask
+from  . import  db
 
 
 def create_app(test_config=None):
@@ -33,5 +34,7 @@ def create_app(test_config=None):
     @app.route('/home')
     def home():
         return 'home'
+    # 在工厂中导入并调用这个函数
+    db.init_app(app)
 
     return app
