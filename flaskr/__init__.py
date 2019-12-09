@@ -1,6 +1,7 @@
 import os
 from flask import Flask
-from  . import  db
+from . import db
+from . import auth
 
 
 def create_app(test_config=None):
@@ -34,7 +35,9 @@ def create_app(test_config=None):
     @app.route('/home')
     def home():
         return 'home'
+
     # 在工厂中导入并调用这个函数
     db.init_app(app)
-
+    # 使用 app.register_blueprint() 导入并注册 蓝图。新的代码放在工厂函数的尾部返回应用之前。
+    app.register_blueprint(auth.bp)
     return app
