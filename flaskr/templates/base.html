@@ -1,6 +1,5 @@
 <!doctype html>
 <title>{% block title %}{% endblock %}- Flask</title>
-<!--url_for() 也是自动可用的，可用于生成视图的 URL ，而不用手动来指定。-->
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <nav>
   <h1>Flaskr</h1>
@@ -23,14 +22,3 @@
   {% endfor %}
   {% block content %}{% endblock %}
 </section>
-<!--在标题下面，正文内容前面，模板会循环显示 get_flashed_messages() 返回 的每个消息。在视图中使用 flash() 来处理出错信息，在模板中就可以这样 显示出出来。-->
-
-<!--模板中定义三个块，这些块会被其他模板重载。-->
-
-<!--{% block title %} 会改变显示在浏览器标签和窗口中的标题。-->
-
-<!--{% block header %} 类似于 title ，但是会改变页面的标题。-->
-
-<!--{% block content %} 是每个页面的具体内容，如登录表单或者博客帖子。-->
-
-<!--其他模板直接放在 templates 文件夹内。为了更好地管理文件，属于某个蓝图 的模板会被放在与蓝图同名的文件夹内。-->
