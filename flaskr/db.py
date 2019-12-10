@@ -9,8 +9,10 @@ from flask.cli import with_appcontext
 def get_db():
     if 'db' not in g:
         # sqlite3.connect() 建立一个数据库连接，该连接指向配置中的 DATABASE 指定的文件。这个文件现在还没有建立，后面会在初始化数据库的时候建立该文件。
-        g.db = sqlite3.connect(current_app.config['DATABASE'],
-                               detect_types=sqlite3.PARSE_DECLTYPES)
+        g.db = sqlite3.connect(
+            current_app.config['DATABASE'],
+            detect_types=sqlite3.PARSE_DECLTYPES
+        )
         # sqlite3.Row 告诉连接返回类似于字典的行，这样可以通过列名称来操作 数据。
         g.db.row_factory = sqlite3.Row
     return g.db
@@ -30,6 +32,7 @@ def init_db():
     with current_app.open_resource('schema.sql') as f:
         db.executescript(f.read().decode('utf8'))
 
+
 # click.command() 定义一个名为 init-db 命令行，它调用 init_db 函数，并为用户显示一个成功的消息。 更多关于如何写命令行的内容请参阅 ref:cli 。
 @click.command('init-db')
 @with_appcontext
@@ -37,6 +40,7 @@ def init_db_command():
     """clear the existing data and create new tables"""
     init_db()
     click.echo('initialized the database.')
+
 
 def init_app(app):
     # app.teardown_appcontext() 告诉 Flask 在返回响应后进行清理的时候调用此函数。
