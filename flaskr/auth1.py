@@ -20,15 +20,14 @@ def register():
         password = request.form['password']
         db = get_db()
         error = None
-
         if not username:
-            error = '用户名必填！'
+            error = "用户名必填！"
         elif not password:
-            error = '密码必填！'
+            error = "密码必填！"
             # 通过查询数据库，检查是否有查询结果返回来验证 username 是否已被注册。 db.execute 使用了带有 ? 占位符 的 SQL 查询语句。占位符可以代替后面的元组参数中相应的值。使用占位符的 好处是会自动帮你转义输入值，以抵御 SQL 注入攻击 。
         # fetchone() 根据查询返回一个记录行。 如果查询没有结果，则返回 None 。后面还用到 fetchall() ，它返回包括所有结果的列表。
         elif db.execute('SELECT id FROM user WHERE username=?', (username,)).fetchone() is not None:
-            error ='用户名{}已注册！'.format(username)
+            error = "用户名{}已注册！".format(username)
         if error is None:
             # 如果验证成功，那么在数据库中插入新用户数据。为了安全原因，不能把密码明文 储存在数据库中。相代替的，使用 generate_password_hash() 生成安全的哈希值并储存 到数据库中。查询修改了数据库是的数据后使用 meth:db.commit() <sqlite3.Connection.commit> 保存修改。
             db.execute('INSERT INTO user (username,password) VALUES(?,?)', (username, generate_password_hash(password)))
