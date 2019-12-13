@@ -2,7 +2,7 @@ import os
 from flask import Flask
 from . import db
 from . import auth
-
+from . import blog
 
 def create_app(test_config=None):
     # 创建和配置app实例
@@ -41,4 +41,8 @@ def create_app(test_config=None):
     
     # 使用 app.register_blueprint() 导入并注册 蓝图。新的代码放在工厂函数的尾部返回应用之前。
     app.register_blueprint(auth.bp)
+
+    app.register_blueprint(blog.bp)
+    app.add_url_rule('/', endpoint='index')
+
     return app
