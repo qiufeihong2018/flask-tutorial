@@ -82,5 +82,5 @@ def write_couplets(text, HorV='V', quality='L', out_file=None):
 # text = '年尽岁除岁月如歌 冬去春来春光似画'
 # write_couplets(text, HorV='H', quality='M', out_file='岁月如歌.jpg')
 
-text ="叶芝颖"
-write_couplets(text,HorV='V',quality='H',out_file='i.png')
+text ="董云岳"
+write_couplets(text,HorV='V',quality='H',out_file='n.png')
