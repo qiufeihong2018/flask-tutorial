@@ -1,4 +1,3 @@
-# https://www.liaoxuefeng.com/wiki/1016959663602400/1017316949097888
 # # 一元二次方程
 # import math
 
@@ -201,46 +200,167 @@
 # 把每一行看做一个list，试写一个generator，不断输出下一行的list：
 
 
-def triangles():
-    l=[1]
-    while True:
-        yield l
-        l=[1]+[l[n]+l[n+1] for n in range(len(l)-1)]+[1]
+# def triangles():
+#     l=[1]
+#     while True:
+#         yield l
+#         l=[1]+[l[n]+l[n+1] for n in range(len(l)-1)]+[1]
 
-# 期待输出:
-# [1]
-# [1, 1]
-# [1, 2, 1]
-# [1, 3, 3, 1]
-# [1, 4, 6, 4, 1]
-# [1, 5, 10, 10, 5, 1]
-# [1, 6, 15, 20, 15, 6, 1]
-# [1, 7, 21, 35, 35, 21, 7, 1]
-# [1, 8, 28, 56, 70, 56, 28, 8, 1]
-# [1, 9, 36, 84, 126, 126, 84, 36, 9, 1]
-n = 0
-results = []
-for t in triangles():
-    results.append(t)
-    n = n + 1
-    if n == 10:
-        break
+# # 期待输出:
+# # [1]
+# # [1, 1]
+# # [1, 2, 1]
+# # [1, 3, 3, 1]
+# # [1, 4, 6, 4, 1]
+# # [1, 5, 10, 10, 5, 1]
+# # [1, 6, 15, 20, 15, 6, 1]
+# # [1, 7, 21, 35, 35, 21, 7, 1]
+# # [1, 8, 28, 56, 70, 56, 28, 8, 1]
+# # [1, 9, 36, 84, 126, 126, 84, 36, 9, 1]
+# n = 0
+# results = []
+# for t in triangles():
+#     results.append(t)
+#     n = n + 1
+#     if n == 10:
+#         break
 
-for t in results:
-    print(t)
+# for t in results:
+#     print(t)
 
-if results == [
-    [1],
-    [1, 1],
-    [1, 2, 1],
-    [1, 3, 3, 1],
-    [1, 4, 6, 4, 1],
-    [1, 5, 10, 10, 5, 1],
-    [1, 6, 15, 20, 15, 6, 1],
-    [1, 7, 21, 35, 35, 21, 7, 1],
-    [1, 8, 28, 56, 70, 56, 28, 8, 1],
-    [1, 9, 36, 84, 126, 126, 84, 36, 9, 1]
-]:
-    print('测试通过!')
+# if results == [
+#     [1],
+#     [1, 1],
+#     [1, 2, 1],
+#     [1, 3, 3, 1],
+#     [1, 4, 6, 4, 1],
+#     [1, 5, 10, 10, 5, 1],
+#     [1, 6, 15, 20, 15, 6, 1],
+#     [1, 7, 21, 35, 35, 21, 7, 1],
+#     [1, 8, 28, 56, 70, 56, 28, 8, 1],
+#     [1, 9, 36, 84, 126, 126, 84, 36, 9, 1]
+# ]:
+#     print('测试通过!')
+# else:
+#     print('测试失败!')
+
+# 把str转化成int的函数
+# from functools import reduce
+# def fn(x,y):
+#     return x*10+y
+
+# def char2num(s):
+#     digits={'0':0,'1':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9}
+#     return digits[s]
+
+# val=reduce(fn,map(char2num,'98746621'))
+# print(val)
+
+
+# from functools import reduce
+# DIGITS={'0':0,'1':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9}
+# def str2int(s):
+#     def fn(x,y):
+#         return x*10+y
+#     def char2num(s):
+#         return DIGITS[s]
+#     return reduce(fn,map(char2num,s))
+
+# val=str2int('98746621')
+# print(val)
+
+# from functools import reduce
+# DIGITS={'0':0,'1':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9}
+# def char2num(s):
+#     return DIGITS[s]
+# def str2int(s):
+#     return reduce(lambda  x,y:x*10+y,map(char2num,s))
+
+# val=str2int('98746621')
+# print(val)
+
+# 练习
+# 利用map()函数，把用户输入的不规范的英文名字，变为首字母大写，其他小写的规范名字。输入：['adam', 'LISA', 'barT']，输出：['Adam', 'Lisa', 'Bart']：
+# def normalize(name):
+#     name=name.lower()
+#     name=name[0].upper()+name[1:]
+#     return name    
+
+# # 测试:
+# L1 = ['adam', 'LISA', 'barT']
+# L2 = list(map(normalize, L1))
+# print(L2)
+
+# def normalize(name):
+#     name=name.capitalize()
+#     return name    
+
+# # 测试:
+# L1 = ['adam', 'LISA', 'barT']
+# L2 = list(map(normalize, L1))
+# print(L2)
+
+# Python提供的sum()函数可以接受一个list并求和，请编写一个prod()函数，可以接受一个list并利用reduce()求积：
+# from functools import reduce
+# def prod(L):
+#     def mul(x,y):
+#         return x*y
+#     return reduce(mul,L)
+    
+# print('3 * 5 * 7 * 9 =', prod([3, 5, 7, 9]))
+# if prod([3, 5, 7, 9]) == 945:
+#     print('测试成功!')
+# else:
+#     print('测试失败!')
+
+# 利用map和reduce编写一个str2float函数，把字符串'123.456'转换成浮点数123.456：
+# from functools import reduce
+# def str2float(s):
+#     def char2num(s):
+#         DIGTS={'0':0,'1':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9}
+#         return DIGTS[s]
+#     def posfn(x,y):
+#         return x*10+y
+#     def negfn(v):
+#         pass
+#     pos=s.split('.')[0]
+#     neg=s.split('.')[1]
+#     return reduce(posfn,map(char2num,pos))+negfn(map(char2num,neg))
+
+from functools import reduce
+CHAR_TO_FLOAT = {
+    '0': 0,
+    '1': 1,
+    '2': 2,
+    '3': 3,
+    '4': 4,
+    '5': 5,
+    '6': 6,
+    '7': 7,
+    '8': 8,
+    '9': 9,
+    '.': -1
+}
+# point是转为负数的标志
+def str2float(s):
+    nums = map(lambda ch: CHAR_TO_FLOAT[ch], s)
+    point = 0
+    def to_float(x, y):
+        nonlocal point
+        if y == -1:
+            point = 1
+            return x
+        if point == 0:
+            return x * 10 + y
+        else:
+            point = point * 10
+            return x + y / point
+    return reduce(to_float, nums, 0.0)
+
+
+
+print('str2float(\'123.456\') =', str2float('123.456'))
+if abs(str2float('123.456') - 123.456) < 0.00001:
+    print('测试成功!')
 else:
     print('测试失败!')
