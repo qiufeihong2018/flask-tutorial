@@ -376,29 +376,46 @@
 # （4）读取队列中当前最小的数5，然后把5的倍数删去
 # （5）读取队列中当前最小的数7，然后把7的倍数删去
 # （6）如上所述直到需求的范围内所有的数均删除或读取
-def _odd_iter():#生成器生成从3开始的无限奇数序列
-    n=1
-    while True:
-        n=n+2
-        yield n
+# def _odd_iter():#生成器生成从3开始的无限奇数序列
+#     n=1
+#     while True:
+#         n=n+2
+#         yield n
 
-def _not_divisible(n):#定义筛选函数
-    return lambda x:x%n>0
+# def _not_divisible(n):#定义筛选函数
+#     return lambda x:x%n>0
 
-def primes():
-    yield 2
-    it=_odd_iter()#初始序列
-    while True:
-        n=next(it)#返回序列的第一个数
-        yield n
-        it=filter(_not_divisible(n),it)#构造新序列
+# def primes():
+#     yield 2
+#     it=_odd_iter()#初始序列
+#     while True:
+#         n=next(it)#返回序列的第一个数
+#         yield n
+#         it=filter(_not_divisible(n),it)#构造新序列
+
+# def main():
+#     for n in primes():#构造循环条件
+#         if n <1000:
+#             print(n)
+#         else:
+#             break
+
+# if __name__ == '__main__':
+#     main()
+# # 首先输出2
+# # 经过primes函数，会去执行_not_divisible筛选出序列中的素数
 
 
-for n in primes():#构造循环条件
-    if n <1000:
-        print(n)
-    else:
-        break
+# 练习
+# 回数是指从左向右读和从右向左读都是一样的数，例如12321，909。请利用filter()筛选出回数：
+# # 字符串倒转
+# def is_palindrome(n):
+#     return str(n)==str(n)[::-1]
 
-# 首先输出2
-# 经过primes函数，会去执行_not_divisible筛选出序列中的素数
+# # 测试:
+# output = filter(is_palindrome, range(1, 1000))
+# print('1~1000:', list(output))
+# if list(filter(is_palindrome, range(1, 200))) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 22, 33, 44, 55, 66, 77, 88, 99, 101, 111, 121, 131, 141, 151, 161, 171, 181, 191]:
+#     print('测试成功!')
+# else:
+#     print('测试失败!')
