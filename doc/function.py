@@ -443,3 +443,39 @@
 
 # L2 = sorted(L, key=by_score,reverse=True)
 # print(L2)
+
+# 练习
+# 利用闭包返回一个计数器函数，每次调用它返回递增整数：
+
+# def createCounter():
+#     i=0
+#     def counter():
+#         nonlocal i
+#         i+=1
+#         return i
+#     return counter
+
+# # 测试:
+# counterA = createCounter()
+# print(counterA(), counterA(), counterA(), counterA(), counterA()) # 1 2 3 4 5
+# counterB = createCounter()
+# if [counterB(), counterB(), counterB(), counterB()] == [1, 2, 3, 4]:
+#     print('测试通过!')
+# else:
+#     print('测试失败!')
+
+# 2. 如果使用闭包知识，且使用变量n（int对象），需要了解的是变量的作用域遵循LEGB规则，然后在counter()函数内声明nonlocal n
+
+# 3. 如果使用闭包知识，且使用变量n（list对象），除了要理解LEGB规则外，还要明白python在函数内可以直接读取其他作用域范围的变量，但是修改变量时就会默认视为局部变量；在这种情况下n是变量名，我们使用的是n对应list对象（可变对象）的内容，变量n未被修改过，因此使用时不需要对n做nonlocal声明即可完成练习。
+
+
+# 练习
+# 请用匿名函数改造下面的代码：
+# def is_odd(n):
+#     return n % 2 == 1
+
+# L = list(filter(is_odd, range(1, 20)))
+
+# L = list(filter(lambda n:n%2==1, range(1, 20)))
+
+# print(L)
