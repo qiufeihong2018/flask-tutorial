@@ -327,40 +327,78 @@
 #     neg=s.split('.')[1]
 #     return reduce(posfn,map(char2num,pos))+negfn(map(char2num,neg))
 
-from functools import reduce
-CHAR_TO_FLOAT = {
-    '0': 0,
-    '1': 1,
-    '2': 2,
-    '3': 3,
-    '4': 4,
-    '5': 5,
-    '6': 6,
-    '7': 7,
-    '8': 8,
-    '9': 9,
-    '.': -1
-}
-# point是转为负数的标志
-def str2float(s):
-    nums = map(lambda ch: CHAR_TO_FLOAT[ch], s)
-    point = 0
-    def to_float(x, y):
-        nonlocal point
-        if y == -1:
-            point = 1
-            return x
-        if point == 0:
-            return x * 10 + y
-        else:
-            point = point * 10
-            return x + y / point
-    return reduce(to_float, nums, 0.0)
+# from functools import reduce
+# CHAR_TO_FLOAT = {
+#     '0': 0,
+#     '1': 1,
+#     '2': 2,
+#     '3': 3,
+#     '4': 4,
+#     '5': 5,
+#     '6': 6,
+#     '7': 7,
+#     '8': 8,
+#     '9': 9,
+#     '.': -1
+# }
+# # point是转为负数的标志
+# def str2float(s):
+#     nums = map(lambda ch: CHAR_TO_FLOAT[ch], s)
+#     point = 0
+#     def to_float(x, y):
+#         nonlocal point
+#         if y == -1:
+#             point = 1
+#             return x
+#         if point == 0:
+#             return x * 10 + y
+#         else:
+#             point = point * 10
+#             return x + y / point
+#     return reduce(to_float, nums, 0.0)
 
 
 
-print('str2float(\'123.456\') =', str2float('123.456'))
-if abs(str2float('123.456') - 123.456) < 0.00001:
-    print('测试成功!')
-else:
-    print('测试失败!')
+# print('str2float(\'123.456\') =', str2float('123.456'))
+# if abs(str2float('123.456') - 123.456) < 0.00001:
+#     print('测试成功!')
+# else:
+#     print('测试失败!')
+
+
+# 用filter求素数
+# 埃拉托色尼筛选法
+# 埃氏筛法步骤编辑
+# （1）先把1删除（现今数学界1既不是质数也不是合数）
+
+# （2）读取队列中当前最小的数2，然后把2的倍数删去
+# （3）读取队列中当前最小的数3，然后把3的倍数删去
+# （4）读取队列中当前最小的数5，然后把5的倍数删去
+# （5）读取队列中当前最小的数7，然后把7的倍数删去
+# （6）如上所述直到需求的范围内所有的数均删除或读取
+def _odd_iter():#生成器生成从3开始的无限奇数序列
+    n=1
+    while True:
+        n=n+2
+        yield n
+
+def _not_divisible(n):#定义筛选函数
+    return lambda x:x%n>0
+
+def primes():
+    yield 2
+    it=_odd_iter()#初始序列
+    while True:
+        n=next(it)#返回序列的第一个数
+        yield n
+        it=filter(_not_divisible(n),it)#构造新序列
+
+
+for n in primes():#构造循环条件
+    if n <1000:
+        print(n)
+    else:
+        break
+
+# 首先输出2
+# 经过primes函数，会去执行_not_divisible筛选出序列中的素数
