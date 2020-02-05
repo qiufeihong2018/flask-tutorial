@@ -479,3 +479,76 @@
 # L = list(filter(lambda n:n%2==1, range(1, 20)))
 
 # print(L)
+
+# 打印日志的装饰器
+# def log(func):
+#     def wrapper(*args,**kw):
+#         print('call %s():'% func.__name__)
+#         return func(*args,**kw)
+#     return wrapper
+
+# @log
+# def now():
+#     print('qiufeihong')
+
+# now()
+
+# def log(text):
+#     def decorator(func):
+#         def wrapper(*args,**kw):
+#             print('%s %s():'%(text,func.__name__))
+#             return func(*args,**kw)
+#         return wrapper
+#     return decorator
+
+# @log('hello')
+# def now():
+#     print('qiufeihong')
+
+# now()#== now=log('hello')(now)
+# print(now.__name__)
+
+
+# import functools
+# def log(func):
+#     @functools.wraps(func)
+#     def wrapper(*args,**kw):
+#         print('call %s():'%func.__name__)
+#         return func(*args,**kw)
+#     return wrapper
+
+
+
+#  练习
+# 请设计一个decorator，它可作用于任何函数上，并打印该函数的执行时间：
+
+# -*- coding: utf-8 -*-
+# import time, functools
+# def metric(fn):
+#     @functools.wraps(fn)
+#     def wrapper(*args, **kw):
+#         start = time.time()
+#         fn(*args, **kw)
+#         end = time.time()
+#         print('%s executed in %.4f ms' % (fn.__name__, end - start))
+#         return fn(*args, **kw)
+
+#     return wrapper
+
+# # 测试
+# @metric
+# def fast(x, y):
+#     time.sleep(0.0012)
+#     return x + y;
+
+# @metric
+# def slow(x, y, z):
+#     time.sleep(0.1234)
+#     return x * y * z;
+
+# f = fast(11, 22)
+# s = slow(11, 22, 33)
+# if f != 33:
+#     print('测试失败!')
+# elif s != 7986:
+#     print('测试失败!')   
