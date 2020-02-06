@@ -552,3 +552,26 @@
 #     print('测试失败!')
 # elif s != 7986:
 #     print('测试失败!')   
+
+
+
+# # 面向对象编程
+# class Student(object):
+#     def __init__(self,name,age):
+#         self.name=name
+#         self.age=age
+#     def print_age(self):
+#         print('%s:%s'%(self.name,self.age))
+
+# s1=Student('qiufeihong',12)
+# s2=Student('qiu',42)
+# s1.print_age()
+# s2.print_age()
+
+# s1={'name':'qiufeihong','age':12}
+# s2={'name':'qiu','age':42}
+# def print_age(st):
+#     print('%s:%s'%(st['name'],st['age']))
+
+# print_age(s1)
+# print_age(s2)
