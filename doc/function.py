@@ -575,3 +575,49 @@
 
 # print_age(s1)
 # print_age(s2)
+
+
+# # 面向对象编程-访问限制
+# class Student(object):
+#     def __init__(self,name,age):
+#         self.__name=name
+#         self.age=age
+#     def print_age(self):
+#         print('%s:%s'%(self.name,self.age))
+
+# s1=Student('qiu',12)
+# print(s1.__name)
+# # AttributeError: 'Student' object has no attribute '__name'
+
+
+# 练习
+# 请把下面的Student对象的gender字段对外隐藏起来，用get_gender()和set_gender()代替，并检查参数有效性：
+
+# -*- coding: utf-8 -*-
+class Student(object):
+    def __init__(self, name, gender):
+        self.name = name
+        self.__gender = gender
+
+    def get_gender(self):
+        return self.__gender
+
+    def set_gender(self,gender):
+        if gender!='half-visible femal':
+            self.__gender=gender
+
+# 测试:
+bart = Student('Bart', 'male')
+if bart.get_gender() != 'male':
+    print('测试失败!')
+else:
+    bart.set_gender('female')
+    if bart.get_gender() != 'female':
+        print('测试失败!')
+    else:
+        print('测试成功!')
+    bart.set_gender('half-visible femal')
+    if bart.get_gender()=='half-visible femal':
+        print('测试失败!')
+    else:
+        print('测试成功!')
