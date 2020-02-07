@@ -635,26 +635,91 @@
 # 练习
 # 为了统计学生人数，可以给Student类增加一个类属性，每创建一个实例，该属性自动增加：
 
-class Student(object):
-    count = 0
+# class Student(object):
+#     count = 0
 
-    def __init__(self, name):
-        self.name = name
-        # 不能是self
-        Student.count=Student.count+1
+#     def __init__(self, name):
+#         self.name = name
+#         # 不能是self
+#         Student.count=Student.count+1
 
 
-# 测试:
-if Student.count != 0:
-    print('测试失败!')
-else:
-    bart = Student('Bart')
-    if Student.count != 1:
-        print('测试失败!')
-    else:
-        lisa = Student('Bart')
-        if Student.count != 2:
-            print('测试失败!')
-        else:
-            print('Students:', Student.count)
-            print('测试通过!')
+# # 测试:
+# if Student.count != 0:
+#     print('测试失败!')
+# else:
+#     bart = Student('Bart')
+#     if Student.count != 1:
+#         print('测试失败!')
+#     else:
+#         lisa = Student('Bart')
+#         if Student.count != 2:
+#             print('测试失败!')
+#         else:
+#             print('Students:', Student.count)
+#             print('测试通过!')
+
+
+# 使用@property隐藏属性
+# class Student(object):
+#     def __init__(self, name, gender):
+#         self.name = name
+#         self.__gender = gender
+#     @property
+#     def gender(self):
+#         return self.__gender
+#     @gender.setter
+#     def gender(self,gender):
+#         if gender!='half-visible femal':
+#             self.__gender=gender
+
+# # 测试:
+# bart = Student('Bart', 'male')
+# if bart.gender != 'male':
+#     print('测试失败!')
+# else:
+#     bart.gender='female'
+#     if bart.gender != 'female':
+#         print('测试失败!')
+#     else:
+#         print('测试成功!')
+#     bart.gender='half-visible femal'
+#     if bart.gender=='half-visible femal':
+#         print('测试失败!')
+#     else:
+#         print('测试成功!')
+
+# 练习
+# 请利用@property给一个Screen对象加上width和height属性，以及一个只读属性resolution：
+
+# class Screen(object):
+#     @property
+#     def width(self):
+#         return self.__width
+
+#     @width.setter
+#     def width(self,width):
+#         self.__width=width
+
+#     @property
+#     def height(self):
+#         return self.__height
+
+#     @height.setter
+#     def height(self,height):
+#         self.__height=height
+
+#     @property
+#     def resolution(self):
+#         return self.__width*self.__height
+
+
+# # 测试:
+# s = Screen()
+# s.width = 1024
+# s.height = 768
+# print('resolution =', s.resolution)
+# if s.resolution == 786432:
+#     print('测试通过!')
+# else:
+#     print('测试失败!')
