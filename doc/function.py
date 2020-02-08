@@ -723,3 +723,95 @@
 #     print('测试通过!')
 # else:
 #     print('测试失败!')
+
+
+# 定制类
+# __str__
+
+# class Student(object):
+#     def __init__(self,name):
+#         self.name=name
+
+# print(Student('qiufeihong'))
+# <__main__.Student object at 0x000001E32CEE4248>
+
+
+# class Student(object):
+#     def __init__(self,name):
+#         self.name=name
+#     def __str__(self):
+#         return 'Student object (name:%s)'%self.name
+
+# print(Student('qiufeihong'))
+# Student object (name:qiufeihong)
+
+# __iter__
+
+# class Fib(object):
+#     def __init__(self):
+#         self.a,self.b=0,1
+#     def __iter__(self):
+#         return self
+
+#     def __next__(self):
+#         self.a,self.b=self.b,self.a+self.b
+#         if self.a>1000:
+#             raise StopIteration()
+#         return self.a
+    
+
+
+# for n in Fib():
+#     print(n)
+
+
+# print(Fib()[5])
+# TypeError: 'Fib' object is not subscriptable
+
+# __getitem__
+# class Fib(object):
+#     def __getitem__(self,n):
+#         a,b=1,1
+#         for x in range(n):
+#             a,b=b,a+b
+#         return a
+# f=Fib()
+# print(f[0])
+# # 1
+# print(f[1000])
+# # 70330367711422815821835254877183549770181269836358732742604905087154537118196933579742249494562611733487750449241765991088186363265450223647106012053374121273867339111198139373125598767690091902245245323403501
+# print(f[0:10])
+# # TypeError: 'slice' object cannot be interpreted as an integer
+
+
+# 切片方法
+
+# class Fib(object):
+#     def __getitem__(self,n):
+#         # 如果n是索引
+#         if isinstance(n,int):
+#             a,b=1,1
+#             for x in range(n):
+#                 a,b=b,a+b
+#             return a
+#         # 如果n是切片
+#         if isinstance(n,slice):
+#             start=n.start
+#             stop=n.stop
+#             if start is None:
+#                 start=0
+#             a,b=1,1
+#             L=[]
+#             for x in range(stop):
+#                 if x>=start:
+#                     L.append(a)
+#                 a,b=b,a+b
+#             return L
+
+# f=Fib()
+# print(f[0])
+# # 1
+# print(f[1000])
+# # 70330367711422815821835254877183549770181269836358732742604905087154537118196933579742249494562611733487750449241765991088186363265450223647106012053374121273867339111198139373125598767690091902245245323403501
+# print(f[0:10])
+# # [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
