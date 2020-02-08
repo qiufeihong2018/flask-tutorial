@@ -815,3 +815,25 @@
 # # 70330367711422815821835254877183549770181269836358732742604905087154537118196933579742249494562611733487750449241765991088186363265450223647106012053374121273867339111198139373125598767690091902245245323403501
 # print(f[0:10])
 # # [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+
+
+# 练习
+# 把Student的gender属性改造为枚举类型，可以避免使用字符串：
+
+# from enum import Enum, unique
+# # class Gender(Enum):
+# #     Male = 0
+# #     Female = 1
+# Gender=Enum('Gender',('Male','Female'))
+
+# class Student(object):
+#     def __init__(self, name, gender):
+#         self.name = name
+#         self.gender = gender
+
+# # 测试:
+# bart = Student('Bart', Gender.Male)
+# if bart.gender == Gender.Male:
+#     print('测试通过!')
+# else:
+#     print('测试失败!')
