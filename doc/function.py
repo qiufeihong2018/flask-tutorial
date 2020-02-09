@@ -837,3 +837,17 @@
 #     print('测试通过!')
 # else:
 #     print('测试失败!')
+
+
+# type()
+# def fn(self,name='world'):
+#     print('hello,%s'%name)
+
+# Hello=type('hello',(object,),dict(hello=fn))
+# h=Hello()
+# h.hello()
+
+# print(type(Hello))
+# print(type(h))
+
+https://www.liaoxuefeng.com/wiki/1016959663602400/1017598873256736
