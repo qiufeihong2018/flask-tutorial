@@ -850,4 +850,125 @@
 # print(type(Hello))
 # print(type(h))
 
-https://www.liaoxuefeng.com/wiki/1016959663602400/1017598873256736
+
+# 错误处理
+# try:
+#     print('try')
+#     r=10/0
+#     print('resulr',r)
+# except ValueError as e:
+#     print('valueError',e)
+# finally:
+#     print('finally')
+# print('end')
+
+# try
+# finally
+# Traceback (most recent call last):
+#   File ".\function.py", line 856, in <module>
+#     r=10/0
+# ZeroDivisionError: division by zero
+
+
+# 使用try...except捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数main()调用foo()，foo()调用bar()，结果bar()出错了，这时，只要main()捕获到了，就可以处理：
+# def foo(s):
+#     return 10 / int(s)
+
+# def bar(s):
+#     return foo(s) * 2
+
+# def main():
+#     try:
+#         bar('0')
+#     except Exception as e:
+#         print('Error:', e)
+#     finally:
+#         print('finally...')
+
+
+# main()
+# # Error: division by zero
+# # finally...
+
+
+# def foo(s):
+#     return 10 / int(s)
+
+# def bar(s):
+#     return foo(s) * 2
+
+# def main():
+#     bar('0')
+
+# main()
+
+# # Traceback (most recent call last):
+# #   File ".\function.py", line 903, in <module>
+# #     main()
+# #   File ".\function.py", line 901, in main
+# #     bar('0')
+# #   File ".\function.py", line 898, in bar
+# #     return foo(s) * 2
+# #   File ".\function.py", line 895, in foo
+# #     return 10 / int(s)
+# # ZeroDivisionError: division by zero
+
+# import logging
+# def foo(s):
+#     return 10/int(s)
+
+# def bar(s):
+#     return  foo(s)*2
+
+# def main():
+#     try:
+#         bar(0)
+#     except Exception as e:
+#         logging.exception(e)
+
+# main()
+# # ERROR:root:division by zero
+# # Traceback (most recent call last):
+# #   File ".\function.py", line 925, in main
+# #     bar(0)
+# #   File ".\function.py", line 921, in bar
+# #     return  foo(s)*2
+# #   File ".\function.py", line 918, in foo
+# #     return 10/int(s)
+# # ZeroDivisionError: division by zero
+
+# 练习
+# 运行下面的代码，根据异常信息进行分析，定位出错误源头，并修复：
+
+# from functools import reduce
+
+# def str2num(s):
+#     return int(s)
+
+# def calc(exp):
+#     ss = exp.split('+')
+#     ns = map(str2num, ss)
+#     return reduce(lambda acc, x: acc + x, ns)
+
+# def main():
+#     r = calc('100 + 200 + 345')
+#     print('100 + 200 + 345 =', r)
+#     r = calc('99 + 88 + 7.6')
+#     print('99 + 88 + 7.6 =', r)
+
+# main()
+# # 100 + 200 + 345 = 645
+# # Traceback (most recent call last):
+# #   File ".\function.py", line 959, in <module>
+# #     main()
+# #   File ".\function.py", line 956, in main
+# #     r = calc('99 + 88 + 7.6')
+# #   File ".\function.py", line 951, in calc
+# #     return reduce(lambda acc, x: acc + x, ns)
+# #   File ".\function.py", line 946, in str2num
+# #     return int(s)
+# # ValueError: invalid literal for int() with base 10: ' 7.6'
+
+
+# 这说明`return int(s)`错了。
+# 改成`return float(s)`即可。
