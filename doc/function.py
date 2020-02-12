@@ -1160,3 +1160,16 @@
 # if __name__ == '__main__':
 #     import doctest
 #     doctest.testmod()
+
+
+# # 练习
+# # 请将本地一个文本文件a写入“hello”，并打印出来：
+
+# fpath = r'D:\a.txt'
+
+# with open(fpath,'w') as f:
+#     f.write('hello')
+
+# with open(fpath, 'r') as f:
+#     s = f.read()
+#     print(s)
