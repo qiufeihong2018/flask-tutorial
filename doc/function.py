@@ -1181,39 +1181,18 @@
 
 # 编写一个程序，能在当前目录以及当前目录的所有子目录下查找文件名包含指定字符串的文件，并打印出相对路径。
 
+# import os
 
-import os
+# path= input('输入查询路径:')
+# xun=input('请输入要查询的文件包含的字符串:')
+# def finpath(path):
+#     for x in os.listdir(path):
+#         mypath=os.path.abspath(os.path.join(path,x))
+#         if os.path.isfile(mypath):
+#             if mypath.find(xun) != -1:
+#                 print('找到文件',x)
+#                 print('路径',mypath)
+#         else:
+#             finpath(mypath)
 
-def initial_dir():
-    while True:
-        try:
-            search_dir=input('请输入定位目录：\n')
-            os.chdir(search_dir)
-        except FileNotFoundError:
-            print('error:输入的不是路径地址，或地址不存在，请重新输入\n')
-        else:
-            os.chdir(search_dir)
-            print('当前路径地址是：'+os.getcwd()+'\n')
-            break
-        return search_dir
-        def keywords():
-            kw=input('输入要查找的关键字：\n')
-            return kw
-        def search_folder(kw,i_dir):
-            search_files(kw,i_dir)
-            a=[os.path.abspath(x) for x in os.listdir('.')if os.path.isdir(x)]
-            for y in a:
-                search_folder(kw,y)
-        def search_files(kw,i_dir):
-            try:
-                os.chdir(i_dir)
-            except PermissionError:
-                print('部分文件或文件夹不可访问')
-            finally:
-                b = [x for x in os.listdir('.') if os.path.isfile(x) and kw in x]
-                for x in b:
-                    print(os.path.abspath(x))
-            search_folder(keywords(), initial_dir())
-
-
-initial_dir()
+# finpath(path)
