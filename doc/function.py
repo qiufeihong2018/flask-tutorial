@@ -1206,3 +1206,19 @@
 #             finpath(mypath)
 
 # finpath(path)
+
+
+# # 练习
+# # 对中文进行JSON序列化时，json.dumps()提供了一个ensure_ascii参数，观察该参数对结果的影响：
+
+# # -*- coding: utf-8 -*-
+
+# import json
+# obj = dict(name='小明', age=20)
+# s = json.dumps(obj, ensure_ascii=True)
+# # s = json.dumps(obj, ensure_ascii=False)
+
+# print(s)
+# # {"name": "\u5c0f\u660e", "age": 20}
+# # {"name": "小明", "age": 20}
+# # ensure_ascii默认情况是True，这时会把中文转成Unicode码，设置成False的话就是打印中文
