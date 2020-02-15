@@ -1222,3 +1222,139 @@
 # # {"name": "\u5c0f\u660e", "age": 20}
 # # {"name": "小明", "age": 20}
 # # ensure_ascii默认情况是True，这时会把中文转成Unicode码，设置成False的话就是打印中文
+
+
+# # window多进程
+
+# from multiprocessing import Process
+# import os
+
+# def run_proc(name):
+#     print('run child process %s (%s)……' % (name,os.getpid()))
+
+# if __name__=='__main__':
+#     print('parent process %s'% os.getpid())
+#     p=Process(target=run_proc,args=('test',))
+#     print('child process will start')
+#     p.start()
+#     p.join()
+#     print('child process end')
+
+# # parent process 20580
+# # child process will start
+# # run child process test (4220)……
+# # child process end
+
+# # 用进程池的方式批量创建子进程
+
+# from multiprocessing import Pool
+# import os, time, random
+
+# def long_time_task(name):
+#     print('Run task %s (%s)...' % (name, os.getpid()))
+#     start = time.time()
+#     time.sleep(random.random() * 3)
+#     end = time.time()
+#     print('Task %s runs %0.2f seconds.' % (name, (end - start)))
+
+# if __name__=='__main__':
+#     print('Parent process %s.' % os.getpid())
+#     p = Pool(10)
+#     for i in range(5):
+#         p.apply_async(long_time_task, args=(i,))
+#     print('Waiting for all subprocesses done...')
+#     p.close()
+#     p.join()
+#     print('All subprocesses done.')
+
+
+# # Parent process 19312.
+# # Waiting for all subprocesses done...
+# # Run task 0 (11244)...
+# # Run task 1 (16428)...
+# # Run task 2 (9804)...
+# # Run task 3 (2112)...
+# # Run task 4 (3276)...
+# # Task 3 runs 0.40 seconds.
+# # Task 4 runs 0.70 seconds.
+# # Task 0 runs 1.11 seconds.
+# # Task 1 runs 1.85 seconds.
+# # Task 2 runs 2.98 seconds.
+# # All subprocesses done.
+
+
+
+# # 以Queue为例，在父进程中创建两个子进程，一个往Queue里写数据，一个从Queue里读数据：
+
+# from multiprocessing import Process, Queue
+# import os, time, random
+
+# # 写数据进程执行的代码:
+# def write(q):
+#     print('Process to write: %s' % os.getpid())
+#     for value in ['A', 'B', 'C']:
+#         print('Put %s to queue...' % value)
+#         q.put(value)
+#         time.sleep(random.random())
+
+# # 读数据进程执行的代码:
+# def read(q):
+#     print('Process to read: %s' % os.getpid())
+#     while True:
+#         value = q.get(True)
+#         print('Get %s from queue.' % value)
+
+# if __name__=='__main__':
+#     # 父进程创建Queue，并传给各个子进程：
+#     q = Queue()
+#     pw = Process(target=write, args=(q,))
+#     pr = Process(target=read, args=(q,))
+#     # 启动子进程pw，写入:
+#     pw.start()
+#     # 启动子进程pr，读取:
+#     pr.start()
+#     # 等待pw结束:
+#     pw.join()
+#     # pr进程里是死循环，无法等待其结束，只能强行终止:
+#     pr.terminate()
+
+# from multiprocessing import Process, Queue
+# import os, time, random
+
+# # 写数据进程执行的代码:
+# def write(q):
+#     print('Process to write: %s' % os.getpid())
+#     for value in ['A', 'B', 'C']:
+#         print('Put %s to queue...' % value)
+#         q.put(value)
+#         time.sleep(random.random())
+
+# # 读数据进程执行的代码:
+# def read(q):
+#     print('Process to read: %s' % os.getpid())
+#     while True:
+#         value = q.get(True)
+#         print('Get %s from queue.' % value)
+
+# if __name__=='__main__':
+#     # 父进程创建Queue，并传给各个子进程：
+#     q = Queue()
+#     pw = Process(target=write, args=(q,))
+#     pr = Process(target=read, args=(q,))
+#     # 启动子进程pw，写入:
+#     pw.start()
+#     # 启动子进程pr，读取:
+#     pr.start()
+#     # 等待pw结束:
+#     pw.join()
+#     # pr进程里是死循环，无法等待其结束，只能强行终止:
+#     pr.terminate()
+
+# # Process to write: 21408
+# # Put A to queue...
+# # Process to read: 6936
+# # Get A from queue.
+# # Put B to queue...
+# # Get B from queue.
+# # Put C to queue...
+# # Get C from queue.
