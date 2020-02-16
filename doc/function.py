@@ -1358,3 +1358,117 @@
 # # Get B from queue.
 # # Put C to queue...
 # # Get C from queue.
+
+
+# 多线程
+# import time, threading
+
+# # 新线程执行的代码:
+# def loop():
+#     print('thread %s is running...' % threading.current_thread().name)
+#     n = 0
+#     while n < 5:
+#         n = n + 1
+#         print('thread %s >>> %s' % (threading.current_thread().name, n))
+#         time.sleep(1)
+#     print('thread %s ended.' % threading.current_thread().name)
+
+# print('thread %s is running...' % threading.current_thread().name)
+# t = threading.Thread(target=loop, name='LoopThread')
+# t.start()
+# t.join()
+# print('thread %s ended.' % threading.current_thread().name)
+# # thread MainThread is running...
+# # thread LoopThread is running...
+# # thread LoopThread >>> 1
+# # thread LoopThread >>> 2
+# # thread LoopThread >>> 3
+# # thread LoopThread >>> 4
+# # thread LoopThread >>> 5
+# # thread LoopThread ended.
+# # thread MainThread ended.
+
+
+
+# import time, threading
+
+# # 假定这是你的银行存款:
+# balance = 0
+
+# def change_it(n):
+#     # 先存后取，结果应该为0:
+#     global balance
+#     balance = balance + n
+#     balance = balance - n
+
+# def run_thread(n):
+#     for i in range(100000):
+#         change_it(n)
+
+# t1 = threading.Thread(target=run_thread, args=(5,))
+# print('balance-t1',balance)
+
+# t2 = threading.Thread(target=run_thread, args=(8,))
+# print('balance-t2',balance)
+
+# t1.start()
+# t2.start()
+# t1.join()
+# t2.join()
+# print('balance',balance)
+
+# # balance-t1 0
+# # balance-t2 0
+# # balance 5
+
+
+# # 多线程加锁
+# import time, threading
+
+# balance = 0
+# lock = threading.Lock()
+
+# def change_it(n):
+#     # 先存后取，结果应该为0:
+#     global balance
+#     balance = balance + n
+#     balance = balance - n
+
+# def run_thread(n):
+#     for i in range(100000):
+#         # 先要获取锁:
+#         lock.acquire()
+#         try:
+#             # 放心地改吧:
+#             change_it(n)
+#         finally:
+#             # 改完了一定要释放锁:
+#             lock.release()
+            
+# t1 = threading.Thread(target=run_thread, args=(5,))
+# print('balance-t1',balance)
+
+# t2 = threading.Thread(target=run_thread, args=(8,))
+# print('balance-t2',balance)
+
+# t1.start()
+# t2.start()
+# t1.join()
+# t2.join()
+# print('balance',balance)
+# # balance-t1 0
+# # balance-t2 0
+# # balance 0
+
+
+# # 死循环
+# import threading, multiprocessing
+
+# def loop():
+#     x = 0
+#     while True:
+#         x = x ^ 1
+
+# for i in range(multiprocessing.cpu_count()):
+#     t = threading.Thread(target=loop)
+#     t.start()
