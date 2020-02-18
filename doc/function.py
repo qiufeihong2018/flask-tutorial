@@ -1478,13 +1478,18 @@
 # 练习
 # 请尝试写一个验证Email地址的正则表达式。版本一应该可以验证出类似的Email：
 
-import re
-def is_valid_email(addr):
-    return True
+# import re
+# def is_valid_email(addr):
+#     re_email= re.compile('^[\w\.]+?@[\w]+\.com$')
+#     msg =re_email.match(addr)
+#     if msg==None:
+#         return False
+#     else:
+#         return True
 
-# 测试:
-assert is_valid_email('someone@gmail.com')
-assert is_valid_email('bill.gates@microsoft.com')
-assert not is_valid_email('bob#example.com')
-assert not is_valid_email('mr-bob@example.com')
-print('ok')
+# # 测试:
+# assert is_valid_email('someone@gmail.com')
+# assert is_valid_email('bill.gates@microsoft.com')
+# assert not is_valid_email('bob#example.com')
+# assert not is_valid_email('mr-bob@example.com')
+# print('ok')
