@@ -1493,3 +1493,23 @@
 # assert not is_valid_email('bob#example.com')
 # assert not is_valid_email('mr-bob@example.com')
 # print('ok')
+
+
+# # 可以提取出带名字的Email地址：
+
+# # <Tom Paris> tom@voyager.org => Tom Paris
+# # bob@example.com => bob
+
+# import re
+# def name_of_email(addr):
+#     # re_email=re.compile('^(.*?)[\w\s]+?@[\w]+\.org$')
+#     re_email=re.compile('^(.*?)([a-zA-Z\s]+)(.*)$')
+#     res=re_email.match(addr).groups()
+#     return res[1]
+
+# # 测试:
+# assert name_of_email('<Tom Paris> tom@voyager.org') == 'Tom Paris'
+# assert name_of_email('tom@voyager.org') == 'tom'
+# print('ok')
+
+# # 匹配任意字符-匹配字母和空格-匹配任意字符
