@@ -1513,3 +1513,38 @@
 # print('ok')
 
 # # 匹配任意字符-匹配字母和空格-匹配任意字符
+
+# # 练习
+# # 假设你获取了用户输入的日期和时间如2015-1-21 9:01:30，以及一个时区信息如UTC+5:00，均是str，请编写一个函数将其转换为timestamp：
+
+# import re
+# from datetime import datetime, timezone, timedelta
+# def to_timestamp(dt_str, tz_str):
+#     # 转化为当前时间的datetime
+#     dt= datetime.strptime(dt_str,'%Y-%m-%d %H:%M:%S')
+#     # 时分截取
+#     timeSp=re.split(r'[\+\-\:]',tz_str)
+#     # 小时
+#     hourSp=timeSp[1]
+#     # 分钟
+#     minuteSp=timeSp[2]
+#     # 正负值
+#     ope=tz_str[3]
+#     # 小时偏移量
+#     hourOffset=int(ope+hourSp)
+#     # 分钟偏移量
+#     minuteOffset=int(ope+minuteSp)
+#     # 利用得到的偏移时差创建输入的dt_str的实际时区
+#     tz_utc=timezone(timedelta(hours=hourOffset,minutes=minuteOffset))
+#     # 调用replace强行将其换为刚才得到的时区，最后调用timestamp，自动转换为UTC时间戳
+#     return dt.replace(tzinfo=tz_utc).timestamp()
+# # 测试:
+# t1 = to_timestamp('2015-6-1 08:10:30', 'UTC+7:00')
+# print(t1)
+# assert t1 == 1433121030.0, t1
+
+# t2 = to_timestamp('2015-5-31 16:10:30', 'UTC-09:00')
+# print(t2)
+# assert t2 == 1433121030.0, t2
+
+# print('ok')
