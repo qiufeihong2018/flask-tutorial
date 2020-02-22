@@ -1548,3 +1548,20 @@
 # assert t2 == 1433121030.0, t2
 
 # print('ok')
+
+# # 练习
+# # 请写一个能处理去掉=的base64解码函数：
+
+# import base64
+# def safe_base64_decode(s):
+#     if type(s)==bytes:
+#         s=str(s,encoding='utf-8')
+#     if len(s)%4==0:
+#         return base64.b64decode(s)
+#     else:
+#         return base64.b64decode(s+'='*(4-(len(s)%4)))
+
+# # 测试:
+# assert b'abcd' == safe_base64_decode(b'YWJjZA=='), safe_base64_decode('YWJjZA==')
+# assert b'abcd' == safe_base64_decode(b'YWJjZA'), safe_base64_decode('YWJjZA')
+# print('ok')
