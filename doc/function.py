@@ -1567,34 +1567,69 @@
 # print('ok')
 
 
-# 请编写一个bmpinfo.py，可以检查任意文件是否是位图文件，如果是，打印出图片大小和颜色数。
+# # 练习
+# # 请编写一个bmpinfo.py，可以检查任意文件是否是位图文件，如果是，打印出图片大小和颜色数。
 
-import base64, struct
-bmp_data = base64.b64decode('Qk1oAgAAAAAAADYAAAAoAAAAHAAAAAoAAAABABAAAAAAADICAAASCwAAEgsAA' +
-                   'AAAAAAAAAAA/3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3/' +
-                   '/f/9//3//f/9//3//f/9/AHwAfAB8AHwAfAB8AHwAfP9//3//fwB8AHwAfAB8/3//f/9/A' +
-                   'HwAfAB8AHz/f/9//3//f/9//38AfAB8AHwAfAB8AHwAfAB8AHz/f/9//38AfAB8/3//f/9' +
-                   '//3//fwB8AHz/f/9//3//f/9//3//f/9/AHwAfP9//3//f/9/AHwAfP9//3//fwB8AHz/f' +
-                   '/9//3//f/9/AHwAfP9//3//f/9//3//f/9//38AfAB8AHwAfAB8AHwAfP9//3//f/9/AHw' +
-                   'AfP9//3//f/9//38AfAB8/3//f/9//3//f/9//3//fwB8AHwAfAB8AHwAfAB8/3//f/9//' +
-                   '38AfAB8/3//f/9//3//fwB8AHz/f/9//3//f/9//3//f/9/AHwAfP9//3//f/9/AHwAfP9' +
-                   '//3//fwB8AHz/f/9/AHz/f/9/AHwAfP9//38AfP9//3//f/9/AHwAfAB8AHwAfAB8AHwAf' +
-                   'AB8/3//f/9/AHwAfP9//38AfAB8AHwAfAB8AHwAfAB8/3//f/9//38AfAB8AHwAfAB8AHw' +
-                   'AfAB8/3//f/9/AHwAfAB8AHz/fwB8AHwAfAB8AHwAfAB8AHz/f/9//3//f/9//3//f/9//' +
-                   '3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//38AAA==')
-def bmp_info(data):
-    info=struct.unpack('<ccIIIIIIHH', data[:30])
-    return {
-        'width': info[-4],
-        'height':info[-3],
-        'color': info[-1]
-    }
+# import base64, struct
+# bmp_data = base64.b64decode('Qk1oAgAAAAAAADYAAAAoAAAAHAAAAAoAAAABABAAAAAAADICAAASCwAAEgsAA' +
+#                    'AAAAAAAAAAA/3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3/' +
+#                    '/f/9//3//f/9//3//f/9/AHwAfAB8AHwAfAB8AHwAfP9//3//fwB8AHwAfAB8/3//f/9/A' +
+#                    'HwAfAB8AHz/f/9//3//f/9//38AfAB8AHwAfAB8AHwAfAB8AHz/f/9//38AfAB8/3//f/9' +
+#                    '//3//fwB8AHz/f/9//3//f/9//3//f/9/AHwAfP9//3//f/9/AHwAfP9//3//fwB8AHz/f' +
+#                    '/9//3//f/9/AHwAfP9//3//f/9//3//f/9//38AfAB8AHwAfAB8AHwAfP9//3//f/9/AHw' +
+#                    'AfP9//3//f/9//38AfAB8/3//f/9//3//f/9//3//fwB8AHwAfAB8AHwAfAB8/3//f/9//' +
+#                    '38AfAB8/3//f/9//3//fwB8AHz/f/9//3//f/9//3//f/9/AHwAfP9//3//f/9/AHwAfP9' +
+#                    '//3//fwB8AHz/f/9/AHz/f/9/AHwAfP9//38AfP9//3//f/9/AHwAfAB8AHwAfAB8AHwAf' +
+#                    'AB8/3//f/9/AHwAfP9//38AfAB8AHwAfAB8AHwAfAB8/3//f/9//38AfAB8AHwAfAB8AHw' +
+#                    'AfAB8/3//f/9/AHwAfAB8AHz/fwB8AHwAfAB8AHwAfAB8AHz/f/9//3//f/9//3//f/9//' +
+#                    '3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//38AAA==')
+# def bmp_info(data):
+#     info=struct.unpack('<ccIIIIIIHH', data[:30])
+#     return {
+#         'width': info[-4],
+#         'height':info[-3],
+#         'color': info[-1]
+#     }
 
-# 测试
-bi = bmp_info(bmp_data)
-assert bi['width'] == 28
-assert bi['height'] == 10
-assert bi['color'] == 16
-print('ok')
+# # 测试
+# bi = bmp_info(bmp_data)
+# assert bi['width'] == 28
+# assert bi['height'] == 10
+# assert bi['color'] == 16
+# print('ok')
 
-# 读入前30个字节来分析
+# # 读入前30个字节来分析
+
+
+
+
+# # 练习
+# # 根据用户输入的口令，计算出存储在数据库中的MD5口令：
+# # 存储MD5的好处是即使运维人员能访问数据库，也无法获知用户的明文口令。
+# # 设计一个验证用户登录的函数，根据用户输入的口令是否正确，返回True或False：
+# import hashlib
+# def calc_md5(password):
+#     md5=hashlib.md5()
+#     md5.update(password.encode('utf-8'))
+#     return md5.hexdigest()
+
+# db = {
+#     'michael': 'e10adc3949ba59abbe56e057f20f883e',
+#     'bob': '878ef96e86145580c38c87f0410ad153',
+#     'alice': '99b1c2188db85afee403b1536010c2c9'
+# }
+# def login(user, password):
+#     p=calc_md5(password)
+#     if db[user]==p:
+#         return True
+#     else:
+#         return False
+
+# # 测试:
+# assert login('michael', '123456')
+# assert login('bob', 'abc999')
+# assert login('alice', 'alice2008')
+# assert not login('michael', '1234567')
+# assert not login('bob', '123456')
+# assert not login('alice', 'Alice2008')
+# print('ok')
