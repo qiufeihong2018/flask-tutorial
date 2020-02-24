@@ -1636,41 +1636,74 @@
 
 
 
-# 练习
-db = {}
+# # 练习
+# db = {}
 
-def register(username, password):
-    db[username] = get_md5(password + username + 'the-Salt')
-# 根据用户输入的登录名和口令模拟用户注册，计算更安全的MD5：
+# def register(username, password):
+#     db[username] = get_md5(password + username + 'the-Salt')
+# # 根据用户输入的登录名和口令模拟用户注册，计算更安全的MD5：
 
-# 然后，根据修改后的MD5算法实现用户登录的验证：
+# # 然后，根据修改后的MD5算法实现用户登录的验证：
 
-import hashlib, random
+# import hashlib, random
 
-def get_md5(s):
-    return hashlib.md5(s.encode('utf-8')).hexdigest()
+# def get_md5(s):
+#     return hashlib.md5(s.encode('utf-8')).hexdigest()
 
-class User(object):
-    def __init__(self, username, password):
-        self.username = username
-        self.salt = ''.join([chr(random.randint(48, 122)) for i in range(20)])
-        self.password = get_md5(password + self.salt)
-db = {
-    'michael': User('michael', '123456'),
-    'bob': User('bob', 'abc999'),
-    'alice': User('alice', 'alice2008')
-}
-def login(username, password):
-    user = db[username]
-    return user.password == get_md5(password+ user.salt)
+# class User(object):
+#     def __init__(self, username, password):
+#         self.username = username
+#         self.salt = ''.join([chr(random.randint(48, 122)) for i in range(20)])
+#         self.password = get_md5(password + self.salt)
+# db = {
+#     'michael': User('michael', '123456'),
+#     'bob': User('bob', 'abc999'),
+#     'alice': User('alice', 'alice2008')
+# }
+# def login(username, password):
+#     user = db[username]
+#     return user.password == get_md5(password+ user.salt)
 
-# 测试:
-assert login('michael', '123456')
-assert login('bob', 'abc999')
-assert login('alice', 'alice2008')
-assert not login('michael', '1234567')
-assert not login('bob', '123456')
-assert not login('alice', 'Alice2008')
-print('ok')
+# # 测试:
+# assert login('michael', '123456')
+# assert login('bob', 'abc999')
+# assert login('alice', 'alice2008')
+# assert not login('michael', '1234567')
+# assert not login('bob', '123456')
+# assert not login('alice', 'Alice2008')
+# print('ok')
 
-# 这个函数里的password是用户新传入的password，不是创建User实例是带入的，所以起到了对比作用，可以看出输入的是不是该用户的密码；
+# # 这个函数里的password是用户新传入的password，不是创建User实例是带入的，所以起到了对比作用，可以看出输入的是不是该用户的密码；
+
+
+# # 练习
+# # 将上一节的salt改为标准的hmac算法，验证用户口令：
+
+# import hmac, random
+
+# def hmac_md5(key, s):
+#     return hmac.new(key.encode('utf-8'), s.encode('utf-8'), 'MD5').hexdigest()
+
+# class User(object):
+#     def __init__(self, username, password):
+#         self.username = username
+#         self.key = ''.join([chr(random.randint(48, 122)) for i in range(20)])
+#         self.password = hmac_md5(self.key, password)
+
+# db = {
+#     'michael': User('michael', '123456'),
+#     'bob': User('bob', 'abc999'),
+#     'alice': User('alice', 'alice2008')
+# }
+# def login(username, password):
+#     user = db[username]
+#     return user.password == hmac_md5(user.key, password)
+
+# # 测试:
+# assert login('michael', '123456')
+# assert login('bob', 'abc999')
+# assert login('alice', 'alice2008')
+# assert not login('michael', '1234567')
+# assert not login('bob', '123456')
+# assert not login('alice', 'Alice2008')
+# print('ok')
