@@ -1740,3 +1740,52 @@
 # assert 3.140 < pi(1000) < 3.141
 # assert 3.1414 < pi(10000) < 3.1415
 # print('ok')
+
+
+
+# # 练习：
+# # 请利用SAX编写程序解析XML格式的天气预报，获取天气预报：
+# # 功能：获取浙江省所有地区的当天天气预报信息
+# from xml.parsers.expat import ParserCreate            # 引入xml解析模块
+# from urllib import request                            # 引入URL请求模块
+
+# class WeatherSaxHandler(object):                      # 定义一个天气事件处理器
+
+#     weather ={'city':1,'cityname':[], 'forecast':[]}               # 初始化城市city和预报信息forecast
+
+#     def start_element(self, name, attrs):             # 定义开始标签处理事件
+#         if name=='zhejiang':
+#             self.weather['city']='浙江'
+#         if name == 'city':               # 获取location信息
+#             self.weather['cityname'].append(attrs['cityname'])          #获取地区名
+#             # 获取forecast信息
+#             self.weather['forecast'].append({
+#                 'state':attrs['stateDetailed'], 
+#                 'high':attrs['tem2'], 
+#                 'low':attrs['tem1'],
+#                 'windDir':attrs['windDir'],
+#                 'windPower':attrs['windPower'],
+#                 'windState':attrs['windState']
+#             })
+
+# def parseXml(xml_str):                                # 定义xml解析器
+
+#     handler = WeatherSaxHandler()
+#     parser = ParserCreate()
+#     parser.StartElementHandler = handler.start_element
+#     parser.Parse(xml_str)                             # 解析xml文本
+#     print('City'+handler.weather['city'])
+#     for (x,y) in zip(handler.weather['cityname'],handler.weather['forecast']):             # 打印天气信息
+#         print('Region:'+x)
+#         print(y)
+       
+#     return handler.weather
+    
+
+# # 测试:
+# URL = 'http://flash.weather.com.cn/wmaps/xml/zhejiang.xml'
+
+# with request.urlopen(URL, timeout=4) as f:
+#     data = f.read()
+
+# result = parseXml(data.decode('utf-8'))
