@@ -1804,37 +1804,62 @@
 # im2.filter(ImageFilter.BLUR)
 # im2.save('wordcloud4.png','png')
 
-# 练习
-# 生成字母验证码图片
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
+# # 练习
+# # 生成字母验证码图片
+# from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
-import random
-# 随机字母:传入一个数值,返回这个数值对应的ascii码字符
-def rndChar():
-    return chr(random.randint(65,90))
-# 随机颜色1:
-def rndColor():
-    return (random.randint(64, 255), random.randint(64, 255), random.randint(64, 255))
-# 随机颜色2:
-def rndColor2():
-    return (random.randint(32, 127), random.randint(32, 127), random.randint(32, 127))
+# import random
+# # 随机字母:传入一个数值,返回这个数值对应的ascii码字符
+# def rndChar():
+#     return chr(random.randint(65,90))
+# # 随机颜色1:
+# def rndColor():
+#     return (random.randint(64, 255), random.randint(64, 255), random.randint(64, 255))
+# # 随机颜色2:
+# def rndColor2():
+#     return (random.randint(32, 127), random.randint(32, 127), random.randint(32, 127))
 
-# 240 x 60:
-width = 60 * 6
-height = 60
-# 创建新的图片
-image = Image.new('RGB', (width, height), (255, 255, 255))
-# 创建Font对象:
-font = ImageFont.truetype('msyh.ttc', 36)
-# 创建Draw对象:
-draw = ImageDraw.Draw(image)
-# 填充每个像素:
-for x in range(width):
-    for y in range(height):
-        draw.point((x, y), fill=rndColor())
-# 输出文字:
-for t in range(6):
-    draw.text((60 * t + 10, 10), rndChar(), font=font, fill=rndColor2())
-# 模糊:
-image = image.filter(ImageFilter.BLUR)
-image.save('code.png', 'png')
+# # 240 x 60:
+# width = 60 * 6
+# height = 60
+# # 创建新的图片
+# image = Image.new('RGB', (width, height), (255, 255, 255))
+# # 创建Font对象:
+# font = ImageFont.truetype('msyh.ttc', 36)
+# # 创建Draw对象:
+# draw = ImageDraw.Draw(image)
+# # 填充每个像素:
+# for x in range(width):
+#     for y in range(height):
+#         draw.point((x, y), fill=rndColor())
+# # 输出文字:
+# for t in range(6):
+#     draw.text((60 * t + 10, 10), rndChar(), font=font, fill=rndColor2())
+# # 模糊:
+# image = image.filter(ImageFilter.BLUR)
+# image.save('code.png', 'png')
+
+
+# # 练习
+# from tkinter import *
+# import tkinter.messagebox as messagebox
+# class Application(Frame):
+#     def __init__(self,master=None):
+#         Frame.__init__(self,master)
+#         self.pack()
+#         self.createWidgets()
+#     def createWidgets(self):
+#         self.nameInput=Entry(self)
+#         self.nameInput.pack()
+#         self.alertButton=Button(self,text='hello',command=self.hello)
+#         self.alertButton.pack()
+#     def hello(self):
+#         name=self.nameInput.get() or 'world'
+#         messagebox.showinfo('message','hello,%s'% name)
+# app=Application()
+# # 窗口标题
+# app.master.title('hello world')
+# # 主消息循环:
+# app.mainloop()
+
+# # https://docs.python.org/2/library/tkinter.html
