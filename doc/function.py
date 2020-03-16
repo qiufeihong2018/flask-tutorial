@@ -1863,3 +1863,39 @@
 # app.mainloop()
 
 # # https://docs.python.org/2/library/tkinter.html
+
+
+# #练习
+# #画一个正方形
+# from turtle import *
+# width(6)
+# forward(200)
+# right(90)
+# pencolor('red')
+# forward(200)
+# right(90)
+# pencolor('green')
+# forward(200)
+# right(90)
+# pencolor('yellow')
+# forward(200)
+# right(90)
+# done()
+
+# # https://docs.python.org/3.3/library/turtle.html#turtle-methods
+
+
+# #练习
+# #画一个五角星
+# from turtle import *
+# def drawStar(x,y):
+#     pu()
+#     goto(x,y)
+#     pd()
+#     seth(0)
+#     for i in range(5):
+#         fd(40)
+#         rt(144)
+# for x in range(0,250,50):
+#     drawStar(x,0)
+# done()
